@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Train:
 
     def __init__(self, idsolution, origin, destination, direction, departuretime, arrivaltime, minprice, optionaltext,
