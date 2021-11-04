@@ -2,7 +2,7 @@ import requests
 from main.model.train import Train
 from main.utils import utils
 
-user_dateinput = "30/12/2021"
+user_dateinput = "20/12/2021"
 
 date = utils.date_range(user_dateinput)
 n = 0

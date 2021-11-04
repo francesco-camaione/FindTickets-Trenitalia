@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link href="{{ url_for('templates', path='/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>FindTickets-Trenitalia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container_fluid" id="container">
+        <div class="col-lg-12">
+            <svg height="100" width="100%">
+                <circle cx="50%" cy="-1060" r="1160"stroke-width="3" fill="#ff4d4d"/>
+                Sorry, your browser does not support inline SVG.  
+            </svg>        
+        </div>
+        <div class="row" id="row1">
+            <div class="col-md-12" id="titolo">
+                <h1>FindTicket Trenitalia</h1>
+                <p>Risparmia sul tuo viaggio. Scopri quali sono le date più convienienti per viaggiare.</p>    
+            </div>
+        </div>
+
+        <form method="post">
+            <div class="container_fluid">
+                <div class="row" id="row2">
+                    <div class="col-sm-auto">
+                        <input placeholder="Da stazione" id="origin" style="max-width: 170px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px;; min-height: 30px; margin-bottom: 5px;"/>
+                    </div>
+                    <div class="col-sm-auto">
+                        <input placeholder="A stazione" id="destination" style="max-width: 170px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px;; min-height: 30px; margin-bottom: 5px;"/>
+                    </div>
+                    <div class="col-sm-auto">
+                        <input type="date" id="date" style="max-width: 170px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px; min-height: 30px; margin-bottom: 5px;"/>
+                    </div>
+                    <div class="col-sm-auto">
+                        <img src="{{ url_for('templates', path='icona_adulto.png') }}" style="max-height: 20px; max-width: 20px;">
+                        <input type="number" id="in_ad" value="1" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px; margin-bottom: 25px;"/>
+                        <img src="{{ url_for('templates', path='icona_bambino.png') }}" style="max-height: 20px; max-width: 20px;">
+                        <input type="number" id="in_ch" value="0" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px;"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row" style ="background-color: rgb(242, 244, 244)">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8" id="results">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo veritatis laborum quia sunt dicta.
+                     Delectus adipisci officiis consequatur fugiat nostrum facilis. In quibusdam neque aliquam modi.
+                      Perspiciatis iure unde quis fugiat laborum saepe quae non nostrum ut ex mollitia est commodi ab rem,
+                       voluptatem nobis doloribus ea sapiente delectus officiis repudiandae culpa ullam. 
+                       Eveniet laborum eligendi reiciendis minus incidunt perspiciatis voluptatem dolorem fuga deleniti ea amet dignissimos 
+                        quos voluptatibus doloribus ab eius numquam, esse, inventore quibusdam illo explicabo sequi. 
+                        Porro alias unde illo, ea modi ullam rem quaerat adipisci quis eaque explicabo labore dolorem fugit accusantium 
+                        sed ipsa.</p>
+            </div>
+            <div class="col-lg-2"></div>
+
+        </div>
+    
+        <div class="row" id="footer">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <p id="p_f">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                    <p id="p_f2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, suscipit.</p>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+ 
+</body>
+</html>
