@@ -1,4 +1,4 @@
-from datetime import datetime
+from main.utils import utils
 
 
 class Train:
@@ -9,7 +9,7 @@ class Train:
         self.idsolution = idsolution
         self.origin = origin
         self.destination = destination
-        self.direction = direction    # andata : A, ritorno: R
+        self.direction = direction
         self.departuretime = departuretime
         self.arrivaltime = arrivaltime
         self.minprice = minprice
@@ -25,3 +25,19 @@ class Train:
         self.specialOffer = specialOffer
         self.transportMeasureList = transportMeasureList
         self.originalPrice = originalPrice
+
+    def __lt__(self, other) -> bool:
+        a = False
+        if self.originalPrice < other.originalPrice:
+            a = True
+        elif self.originalPrice == other.originalPrice and self.changesno < other.changesno:
+            a = True
+        return a
+
+    def __repr__(self):
+        return f"{self.minprice} {utils.get_date(self.departuretime)} {self.duration}"
+
+
+
+
+

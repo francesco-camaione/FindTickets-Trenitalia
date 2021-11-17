@@ -37,10 +37,10 @@
                         <input type="date" id="date" style="max-width: 170px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px; min-height: 30px; margin-bottom: 5px;"/>
                     </div>
                     <div class="col-sm-auto">
-                        <img src="{{ url_for('templates', path='icona_adulto.png') }}" style="max-height: 20px; max-width: 20px;">
-                        <input type="number" id="in_ad" value="1" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px; margin-bottom: 25px;"/>
-                        <img src="{{ url_for('templates', path='icona_bambino.png') }}" style="max-height: 20px; max-width: 20px;">
-                        <input type="number" id="in_ch" value="0" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px;"/>
+                        <img src="{{ url_for('templates', path='icona_adulto.png') }}" style="max-height: 20px; max-width: 20px; alt: icona di un adulto;">
+                        <input type="number" id="in_ad" value="1" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px; margin-bottom: 25px;" aria-placeholder="1"/>
+                        <img src="{{ url_for('templates', path='icona_bambino.png') }}" style="max-height: 20px; max-width: 20px; alt: icona di un bamino;">
+                        <input type="number" id="in_ch" value="0" style="min-height: 30px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 0.4px;" aria-placeholder="0" />
                     </div>
                 </div>
             </div>
