@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link href="{{ url_for('css', path='/index.css') }}" rel="stylesheet">
+    <title>FindTrain-Trenitalia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap-grid.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="#" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   <!--jquery-->
+</head>
+
+<body class="light">
+<div class="container_fluid" id="container">
+    <div class="col-lg-12" style="padding-left: 0 !important; padding-right: 0 !important ;">
+        <svg height="100" width="100%">
+            <circle cx="50%" cy="-1060" r="1160" stroke-width="3" fill="#ff4d4d"/>
+        </svg>
+    </div>
+    <div class="row" id="row1" >
+        <div class="col-md-12" id="top">
+            <h1 style="font-size: 35px; padding-top: 70px;" id="title">FindTrain</h1>
+            <p style="margin: 25px;">Risparmia sul tuo viaggio. Scopri quali sono le date più convienienti per viaggiare in Trenitalia.</p>
+        </div>
+    </div>
+
+
+
+    <div class="Calendar">
+        <div class="leftColumn">
+            <form method="post">
+                <div class="container_fluid">
+                    <div class="row" id="row2">
+                        <div class="col-sm-auto">
+                            <input list="da_stazioni" id="origin" oninput="from_stazioni()" placeholder="Milano Centrale" type="text" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; margin-bottom: 10px; text-align: center;"/>
+                            <datalist id="da_stazioni"></datalist>
+                        </div>
+                        <div class="col-sm-auto">
+                            <input list="a_stazioni" placeholder="A stazione" id="destination" oninput="to_stazioni()" type="text" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; margin-bottom: 10px; text-align: center;"/>
+                            <datalist id="a_stazioni"></datalist>
+                        </div>
+                        <!--man_form-->
+                        <div class="container">
+                            <div class="item">
+                                <div class="arrowContainer">
+                                    <a id="sub__adu" onclick="countDown()">
+                                        <i class="material-icons" style="margin-top: 11px;">remove</i>
+                                    </a>
+
+                                    <img src="{{ url_for('img', path='/man.png') }}" style="max-height: 20px; max-width: 20px; alt: icona adulto; margin-top: 17px;" alt="icona adulto">
+
+                                    <p id="n_adult_passeng">1</p>
+                                    <a id="add_adu" onclick="countUp()">
+                                        <i class="material-icons" style="margin-top: 11px;">add</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--baby_form-->
+                            <div class="arrowContainer">
+                                <a id="sub_baby" onclick="countDown2()">
+                                    <i class="material-icons" style="margin-top: 11px;">remove</i>
+                                </a>
+
+                                <img src="{{ url_for('img', path='smiling-baby.png') }}" style="max-height: 20px; max-width: 20px; alt: icona bambino; margin-top: 17px;" alt="icona bambino">
+
+                                <p id="n_baby_passeng">0</p>
+                                <a id="add_baby" onclick="countUp2()">
+                                    <i class="material-icons" style="margin-top: 11px;">add</i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <h3 id="selectedDay" style="display: none;"></h3>
+            
+                <div class="arrowContainer">
+                    <a id="prevMonth">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                    </a>
+                    <p id="month-name" style="margin-top: 10px;" > </p>
+                    <a id="nextMonth">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                </div>
+                <br>
+                <div class="arrowContainer">
+                    <a id="prevYear">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                    </a>
+                    <p id="year-name" style="margin-top: 10px;"></p>
+                    <a id="nextYear">
+                        ><i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                </div>
+                <div class="container">
+                    <div class="item" style="margin-bottom: 15px;" >
+                        <img src="{{ url_for('img', path='/clock_.png') }}" style="height: 28px; width: 28px; alt: icona adulto;" alt="icona adulto" id="clock" onmouseover="bigImg()" onmouseout="normalImg()">
+                        <select title="Orario di partenza" id="pick_time" name="atime" style="width: 70px; border-radius: 4px; height: 30px; border-color: transparent; background: transparent; color: white; display: none; ">
+                            <option value ="00:00" class="atime">00:00</option><option value ="00:30" class="atime">00:30</option>
+                            <option value ="01:00" class="atime">01:00</option><option value ="01:30" class="atime">01:30</option>
+                            <option value ="02:00" class="atime">02:00</option><option value ="02:30" class="atime">02:30</option>
+                            <option value ="03:00" class="atime">03:00</option><option value ="03:30" class="atime">03:30</option>
+                            <option value ="04:00" class="atime">04:00</option><option value ="04:30" class="atime">04:30</option>
+                            <option value ="05:00" class="atime">05:00</option><option value ="05:30" class="atime">05:30</option>
+                            <option value ="06:00" class="atime">06:00</option><option value ="06:30" class="atime">06:30</option>
+                            <option value ="07:00" class="atime" selected>07:00</option><option value ="07:30" class="atime">07:30</option>
+                            <option value ="08:00" class="atime">08:00</option><option value ="08:30" class="atime">08:30</option>
+                            <option value ="09:00" class="atime">09:00</option><option value ="09:30" class="atime">09:30</option>
+                            <option value ="10:00" class="atime">10:00</option><option value ="10:30" class="atime">10:30</option>
+                            <option value ="11:00" class="atime">11:00</option><option value ="11:30" class="atime">11:30</option>
+                            <option value ="12:00" class="atime">12:00</option><option value ="12:30" class="atime">12:30</option>
+                            <option value ="13:00" class="atime">13:00</option><option value ="13:30" class="atime">13:30</option>
+                            <option value ="14:00" class="atime">14:00</option><option value ="14:30" class="atime">14:30</option>
+                            <option value ="15:00" class="atime">15:00</option><option value ="15:30" class="atime">15:30</option>
+                            <option value ="16:00" class="atime">16:00</option><option value ="16:30" class="atime">16:30</option>
+                            <option value ="17:00" class="atime">17:00</option><option value ="17:30" class="atime">17:30</option>
+                            <option value ="18:00" class="atime">18:00</option><option value ="18:30" class="atime">18:30</option>
+                            <option value ="19:00" class="atime">19:00</option><option value ="19:30" class="atime">19:30</option>
+                            <option value ="20:00" class="atime">20:00</option><option value ="20:30" class="atime">20:30</option>
+                            <option value ="21:00" class="atime">21:00</option><option value ="21:30" class="atime">21:30</option>
+                            <option value ="22:00" class="atime">22:00</option><option value ="22:30" class="atime">22:30</option>
+                            <option value ="23:00" class="atime">23:00</option><option value ="23:30" class="atime">23:30</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row" style="justify-content: center; padding-bottom: 12px;">
+                    <div class="arrowContainer" style="justify-content: center; ">
+                        <button type="button" class="btn btn-outline-light" onclick="postdata()" style="padding-left: 58px; border-radius: 11px;
+                        padding-top: 5px; padding-right: 58px; padding-bottom: 5px;">Cerca</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="rightColumn">
+            <div id="tableContainer">
+                <div class="row" style="color: #9335ff; margin-bottom: 30px;  padding: 5px 0 !important; border-radius: 2px">
+                    <div class="colw" style="width: 14.27%;">L</div>
+                    <div class="colw" style="width: 14.27%;">M</div>
+                    <div class="colw" style="width: 14.27%;">M</div>
+                    <div class="colw" style="width: 14.27%;">G</div>
+                    <div class="colw" style="width: 14.27%;">V</div>
+                    <div class="colw" style="width: 14.27%;">S</div>
+                    <div class="colw" style="width: 14.27%;">D</div>
+                </div>
+                <div id="tableBody">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="resu" style="margin-left: 17px; margin-right: 17px; margin-bottom: 20px;; padding: 13px; border: 1.54px solid #ff4d4d; justify-content: center; border-radius: 30px;">
+
+    </div>
+</div>
+
+<script src="{{ url_for('js', path='/index.js') }}"></script>
+</body>
+</html>

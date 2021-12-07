@@ -4,7 +4,7 @@ from datetime import timedelta, datetime
 def date_range(date_input):
     date = datetime.strptime(date_input, "%d/%m/%Y").date()
     newdate = []
-    for i in range(0, 30):
+    for i in range(0, 31):
         newdate.append(str((date + timedelta(days=i)).strftime("%d/%m/%Y")))
     return newdate
 

@@ -1,4 +1,4 @@
-from main.utils import utils
+from utils import utils
 
 
 class Train:
@@ -24,20 +24,10 @@ class Train:
         self.showSeat = showSeat
         self.specialOffer = specialOffer
         self.transportMeasureList = transportMeasureList
-        self.originalPrice = originalPrice
+        self.originalPrice = int(originalPrice)
 
     def __lt__(self, other) -> bool:
-        a = False
-        if self.originalPrice < other.originalPrice:
-            a = True
-        elif self.originalPrice == other.originalPrice and self.changesno < other.changesno:
-            a = True
-        return a
+        return self.originalPrice < other.originalPrice
 
     def __repr__(self):
         return f"{self.minprice} {utils.get_date(self.departuretime)} {self.duration}"
-
-
-
-
-
