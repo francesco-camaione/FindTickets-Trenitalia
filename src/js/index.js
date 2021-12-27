@@ -280,9 +280,6 @@ function from_stazioni(){
      for(let n = 0; n < j.length; n++){
          html += `<option value="${j[n].name}">${j[n].name}</option>`;
      }
-    var dtlst = document.createElement('datalist');
-    dtlst.id = "da_stazioni";
-    document.getElementById('origin').append(dtlst);
     $('#da_stazioni').append(html);
     }
   if (letters.length > 1){
@@ -301,9 +298,6 @@ function to_stazioni(){
         for(let n = 0; n < j.length; n++){
             html += `<option value="${j[n].name}">${j[n].name}</option>`;
         }
-    var dtlst = document.createElement('datalist');
-    dtlst.id = "a_stazioni";
-    document.getElementById('destination').append(dtlst);
     $('#a_stazioni').append(html);
     }
   if (letters.length > 1){
