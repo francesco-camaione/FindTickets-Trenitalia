@@ -278,7 +278,7 @@ function from_stazioni(){
      var html = "";
      var j = JSON.parse(xhttp.response);
      for(let n = 0; n < j.length; n++){
-         html += `<option id ="staz" value="${j[n].name}">${j[n].name}</option>`;
+         html += `<option value="${j[n].name}">${j[n].name}</option>`;
      }
     var dtlst = document.createElement('datalist');
     dtlst.id = "da_stazioni";
@@ -299,7 +299,7 @@ function to_stazioni(){
         var html = "";
         var j = JSON.parse(xhttp.response);
         for(let n = 0; n < j.length; n++){
-            html += `<option id ="staz" value="${j[n].name}">${j[n].name}</option>`;
+            html += `<option value="${j[n].name}">${j[n].name}</option>`;
         }
     var dtlst = document.createElement('datalist');
     dtlst.id = "a_stazioni";
