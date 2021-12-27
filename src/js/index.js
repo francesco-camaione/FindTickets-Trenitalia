@@ -280,7 +280,7 @@ function from_stazioni(){
      for(let n = 0; n < j.length; n++){
          html += `<option value="${j[n].name}">${j[n].name}</option>`;
      }
-    var dtlst = document.createElement('datalist');
+    var dtlst = document.createElement('select');
     dtlst.id = "da_stazioni";
     document.getElementById('origin').append(dtlst);
     $('#da_stazioni').append(html);
