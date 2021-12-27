@@ -361,16 +361,15 @@ cale.addEventListener('click', function(){
     var a = JSON.parse(xhttp.response);
     for (var i = 0; i < a.length; i++){
       for( var n = 0; n < a[i].length; n++){
-
         if (a[i][n].saleable == true && parseInt(moment(a[i][n].departuretime).format("D")) == parseInt(day)){
           var html = `<div class="r"><div class="row">
-            <div class="col-auto" style="font-size: 9px;">${a[i][n].idsolution}</div>
-            <div class="col-auto">${a[i][n].originalPrice}€</div> 
-            <div class="col-auto">${a[i][n].duration}h</div>
-            <div class="col-auto" style="font-size: 10px;">${a[i][n].changesno}</div>
-            <div class="col-auto">${moment(a[i][n].departuretime).format("H:mm")}</div>
-            <div class="col-auto">${moment(a[i][n].arrivaltime).format("H:mm")}</div>
-            </div></div>`
+          <div class="container" style="display: flex; gap: 0.6rem; background: white; border-radius: 10px; border: 1.5px solid blueviolet; width: 100%; flex-wrap: wrap; margin-bottom: 10px; justify-content: space-between; align-items: baseline;">
+          <div class="item" style="text-align: center; padding-top: 10px;"><p style="font-weight: 500;">${moment(a[i][n].departuretime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${a[i][n].origin}</p></div>
+          <div class="item" style="color: gray; font-size: 11px; margin-top: 14px; min-width: 30px; ">${a[i][n].duration}h</div>
+          <div class="item" style="text-align: center; padding-top: 10px;"><p style="font-weight: 500">${moment(a[i][n].arrivaltime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${a[i][n].destination}</p></div>
+          <div class="item" style="display: contents"><p style="font-size: 10px; color: #494343; margin-left: 8%;">Cambi: ${a[i][n].changesno}</p><p style="font-size: 10px; color: #494343; padding-left: 10px;">${a[i][n].trainlist[0].trainacronym}</p><p style="margin-left: auto; padding-right: 10px; font-weight: 600; ">${a[i][n].originalPrice}€</p></div>
+          </div>
+          </div></div>`
           $('#resu').append(html)
         }
         

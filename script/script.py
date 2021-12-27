@@ -413,62 +413,66 @@ def calendar_bestprices(response_list) -> dict:
         day27_list.append(train_day27)
 
     day28_list = []
-    for train in response_list[27]:
-        if train["saleable"]:
-            trains = Train(**train)
-            train_day28 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
-                              trains.duration)
-            day28_list.append(train_day28)
-            day28_list.sort(key=lambda x: x.price)
-        else:
-            train_day28 = Day(00, 999, [], '00')
-            day28_list.append(train_day28)
-    if len(day28_list) == 0:
+    if len(response_list[27]) > 1:
+        for train in response_list[27]:
+            if train["saleable"]:
+                trains = Train(**train)
+                train_day28 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
+                                  trains.duration)
+                day28_list.append(train_day28)
+                day28_list.sort(key=lambda x: x.price)
+            else:
+                train_day28 = Day(00, 999, [], '00')
+                day28_list.append(train_day28)
+    else:
         train_day28 = Day(00, 999, [], '00')
         day28_list.append(train_day28)
 
     day29_list = []
-    for train in response_list[28]:
-        if train["saleable"]:
-            trains = Train(**train)
-            train_day29 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
+    if len(response_list[28]) > 1:
+        for train in response_list[28]:
+            if train["saleable"]:
+                trains = Train(**train)
+                train_day29 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
                               trains.duration)
-            day29_list.append(train_day29)
-            day29_list.sort(key=lambda x: x.price)
-        else:
-            train_day29 = Day(00, 999, [], '00')
-            day29_list.append(train_day29)
-    if len(day29_list) == 0:
+                day29_list.append(train_day29)
+                day29_list.sort(key=lambda x: x.price)
+            else:
+                train_day29 = Day(00, 999, [], '00')
+                day29_list.append(train_day29)
+    else:
         train_day29 = Day(00, 999, [], '00')
         day29_list.append(train_day29)
 
     day30_list = []
-    for train in response_list[29]:
-        if train["saleable"]:
-            trains = Train(**train)
-            train_day30 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
-                              trains.duration)
-            day30_list.append(train_day30)
-            day30_list.sort(key=lambda x: x.price)
-        else:
-            train_day30 = Day(00, 999, [], '00')
-            day30_list.append(train_day30)
-    if len(day30_list) == 0:
+    if len(response_list[29]) > 1:
+        for train in response_list[29]:
+            if train["saleable"]:
+                trains = Train(**train)
+                train_day30 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
+                                  trains.duration)
+                day30_list.append(train_day30)
+                day30_list.sort(key=lambda x: x.price)
+            else:
+                train_day30 = Day(00, 999, [], '00')
+                day30_list.append(train_day30)
+    else:
         train_day30 = Day(00, 999, [], '00')
         day30_list.append(train_day30)
 
     day31_list = []
-    for train in response_list[30]:
-        if train["saleable"]:
-            trains = Train(**train)
-            train_day31 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
-                              trains.duration)
-            day31_list.append(train_day31)
-            day31_list.sort(key=lambda x: x.price)
-        else:
-            train_day31 = Day(00, 999, [], '00')
-            day31_list.append(train_day31)
-    if len(day31_list) == 0:
+    if len(response_list[30]) > 1:
+        for train in response_list[30]:
+            if train["saleable"]:
+                trains = Train(**train)
+                train_day31 = Day(utils.get_date(trains.departuretime), trains.originalPrice, trains.trainlist,
+                                  trains.duration)
+                day31_list.append(train_day31)
+                day31_list.sort(key=lambda x: x.price)
+            else:
+                train_day31 = Day(00, 999, [], '00')
+                day31_list.append(train_day31)
+    else:
         train_day31 = Day(00, 999, [], '00')
         day31_list.append(train_day31)
 
@@ -488,12 +492,8 @@ def calendar_bestprices(response_list) -> dict:
     return calendar_list
 
 
-origin = "Giulianova"
-destination = "Bologna Centrale"
-date = f"01/12/2021"
-n_adult = 2
-n_baby = 1
-# calend_prices = calendar_bestprices(availabl_trains(origin, destination, data, n_adult, n_baby))
-# print(calend_prices)
-# day = service.trains_of_day_x.Tr_Dayx(origin, destination, "9", "12", "2021", n_adult, n_baby).get_data()
-# print(day)
+origin = "Milano Centrale"
+destination = "Giulianova"
+date = f"01/01/2022"
+n_adult = 1
+n_baby = 0

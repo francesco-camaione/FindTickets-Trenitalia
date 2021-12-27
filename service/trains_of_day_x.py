@@ -14,7 +14,7 @@ class Tr_Dayx:
         self.date = f"{day}/{month}/{year}"
 
     def get_data(self):
-        hhs = ["06", "07", "07:30", "08", "9", "10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15",
+        hhs = ["06", "07", "07:30", "08", "9", "10", "10:30", "11", "11:30", "12", "12:30", "13", "14", "14:30", "15",
                "15:30", "16", "16:30", "17", "17:30", "18", "19", "20"]
         list_of_urls = []
         for hh in hhs:
@@ -23,7 +23,7 @@ class Tr_Dayx:
                   f"&childno={self.n_baby}&direction=A&frecce=false"
             list_of_urls.append(url)
 
-        set_of_requests = (grequests.get(url) for url in list_of_urls)
+        set_of_requests = (grequests.get(url, timeout=6.0, stream=True) for url in list_of_urls)
         responses = (grequests.map(set_of_requests))
         response = [response.json() for response in responses if response.status_code == 200]
         return response
