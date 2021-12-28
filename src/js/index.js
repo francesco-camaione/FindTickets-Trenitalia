@@ -286,7 +286,7 @@ function from_stazioni(){
     $('#da_stazioni').append(html);
     }
   if (letters.length > 1){
-    xhttp.open("GET", "https://www.lefrecce.it/msite/api/geolocations/locations?name="+letters, true);
+    xhttp.open("POST", "/stations/?letter="+letters, true);
     xhttp.send();
   }
 }
@@ -307,7 +307,7 @@ function to_stazioni(){
     $('#a_stazioni').append(html);
     }
   if (letters.length > 1){
-    xhttp.open("GET", "https://www.lefrecce.it/msite/api/geolocations/locations?name="+letters, true);
+    xhttp.open("POST", "/stations/?letter="+letters, true);
     xhttp.send();
   }
 }

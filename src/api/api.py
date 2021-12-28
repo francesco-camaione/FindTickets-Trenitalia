@@ -7,7 +7,7 @@ from starlette.staticfiles import StaticFiles
 from script.script import calendar_bestprices
 from service import trains_of_day_x
 from service.train_service import availabl_trains
-
+from utils import utils
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/html/")
@@ -34,3 +34,9 @@ def prices(origin: str, destination: str, month: int, year: int, n_adult: int, n
 def trains(origin, destination, day, month, year, n_adult, n_baby):
     trains_per_day = trains_of_day_x.Tr_Dayx(origin, destination, day, month, year, n_adult, n_baby).get_data()
     return trains_per_day
+
+
+@app.post("/stations")
+def stations(letter: str):
+    res = utils.stations(letter)
+    return res

@@ -1,5 +1,7 @@
 from datetime import timedelta, datetime
 
+import requests
+
 
 def date_range(date_input):
     date = datetime.strptime(date_input, "%d/%m/%Y").date()
@@ -29,3 +31,8 @@ def train_name(trainlist: list):
     if len(names) == 1:
         train_names += f"{names[0]}"
     return train_names
+
+
+def stations(letters: str):
+    res = requests.get("https://www.lefrecce.it/msite/api/geolocations/locations?name=" + letters)
+    return res.json()
