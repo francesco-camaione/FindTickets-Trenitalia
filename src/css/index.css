@@ -3,7 +3,7 @@
 body{
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;  
-    zoom: 138%;
+    zoom: 133%;
     background-color: #f0f2f5;
 }
 #container{
@@ -241,7 +241,7 @@ form{
   }
 }
 #origin::-webkit-calendar-picker-indicator {
-  opacity: 0;
+  opacity: 1;
   margin: -9px;
 }
 
