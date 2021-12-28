@@ -1,7 +1,5 @@
-import service.trains_of_day_x
 from model.day import Day
 from model.train import Train
-from service.train_service import availabl_trains
 from utils import utils
 
 

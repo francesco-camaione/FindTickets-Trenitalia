@@ -7,5 +7,4 @@ def get_time(iso_date: int):
 
 
 iso = 1640701200000
-
 print(get_time(iso))

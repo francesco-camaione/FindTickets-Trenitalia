@@ -23,7 +23,12 @@ class Tr_Dayx:
                   f"&childno={self.n_baby}&direction=A&frecce=false"
             list_of_urls.append(url)
 
-        set_of_requests = (grequests.get(url, timeout=6.0, stream=True) for url in list_of_urls)
+        set_of_requests = (grequests.get(url) for url in list_of_urls)
         responses = (grequests.map(set_of_requests))
-        response = [response.json() for response in responses if response.status_code == 200]
-        return response
+        json_response = []
+        for response in responses:
+            if response is not None:
+                json_response.append(response.json())
+            if response is None:
+                json_response.append("")
+        return json_response
