@@ -241,7 +241,7 @@ form{
   }
 }
 #origin::-webkit-calendar-picker-indicator {
-  opacity: 1;
+  opacity: 0;
   margin: -9px;
 }
 
