@@ -12,3 +12,4 @@ uvicorn==0.15.0
 watchdog==0.9.0
 grequests==0.6.0
 fastapi==0.70.1
+cors==1.0.1
