@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
 from script.script import calendar_bestprices
 from service import trains_of_day_x
@@ -15,6 +16,16 @@ app.mount("/html", StaticFiles(directory="src/html"), name="html")
 app.mount("/img", StaticFiles(directory="src/img"), name="img")
 app.mount("/js", StaticFiles(directory="src/js"), name="js")
 app.mount("/css", StaticFiles(directory="src/css"), name="css")
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/", response_class=HTMLResponse)
