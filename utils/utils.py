@@ -16,7 +16,7 @@ def get_time(iso_date: int):
     return time_
 
 
-def get_date(iso_date: int):
+def get_date(iso_date: int):  # from iso to dd-mm-yyy
     date_ = datetime.utcfromtimestamp(iso_date / 1000).strftime('%d-%m-%Y')
     return date_
 
@@ -33,6 +33,6 @@ def train_name(trainlist: list):
     return train_names
 
 
-def stations(letters: str):
+def stations(letters: str):  # return stations based on user inputs
     res = requests.get("https://www.lefrecce.it/msite/api/geolocations/locations?name=" + letters)
     return res.json()
