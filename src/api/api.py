@@ -17,16 +17,6 @@ app.mount("/img", StaticFiles(directory="src/img"), name="img")
 app.mount("/js", StaticFiles(directory="src/js"), name="js")
 app.mount("/css", StaticFiles(directory="src/css"), name="css")
 
-origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
