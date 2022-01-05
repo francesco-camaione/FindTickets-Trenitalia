@@ -54,10 +54,12 @@ form{
 }
 #origin::placeholder{
   color: #5f6666;
+  caret-color: #9335ff;
 }
 
 #destination::placeholder{
   color: #5f6666;
+  caret-color: #9335ff;
 }
 
 #results {
