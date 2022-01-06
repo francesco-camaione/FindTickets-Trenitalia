@@ -248,9 +248,8 @@ select:focus, select:focus{
 .atime{
     border-radius: 20px
 }
-@keyframes move {
-  from {left: 0px;}
-  to {left: 2px;};
+.col:hover{
+    transform: scale(1.1)
 }
 #res{
   justify-content: center;

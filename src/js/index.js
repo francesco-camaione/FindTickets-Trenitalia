@@ -18,7 +18,7 @@ function createCalendar(date, side) {
     year: "numeric"
   });
   yearTitle.innerHTML = `${yearNum}`;
-  monthTitle.innerHTML = `${monthName}`;
+  monthTitle.innerHTML = `${monthName[0].toUpperCase()+monthName.substring(1)}`;
 
   if (side == "left") {
     gridTable.className = "animated fadeOutRight";
@@ -185,18 +185,18 @@ function countDown2(){
 
 function postdata() {
   $(".price").remove();
-  if (document.getElementById('month-name').innerText == "gen"){var month = "01"};
-  if (document.getElementById('month-name').innerText == "feb"){var month = "02"};
-  if (document.getElementById('month-name').innerText == "mar"){var month = "03"};
-  if (document.getElementById('month-name').innerText == "apr"){var month = "04"};
-  if (document.getElementById('month-name').innerText == "mag"){var month = "05"};
-  if (document.getElementById('month-name').innerText == "giu"){var month = "06"};
-  if (document.getElementById('month-name').innerText == "lug"){var month = "07"};
-  if (document.getElementById('month-name').innerText == "ago"){var month = "08"};
-  if (document.getElementById('month-name').innerText == "set"){var month = "09"};
-  if (document.getElementById('month-name').innerText == "ott"){var month = "10"};
-  if (document.getElementById('month-name').innerText == "nov"){var month = "11"};
-  if (document.getElementById('month-name').innerText == "dic"){var month = "12"};
+  if (document.getElementById('month-name').innerText == "Gen"){var month = "01"};
+  if (document.getElementById('month-name').innerText == "Feb"){var month = "02"};
+  if (document.getElementById('month-name').innerText == "Mar"){var month = "03"};
+  if (document.getElementById('month-name').innerText == "Apr"){var month = "04"};
+  if (document.getElementById('month-name').innerText == "Mag"){var month = "05"};
+  if (document.getElementById('month-name').innerText == "Giu"){var month = "06"};
+  if (document.getElementById('month-name').innerText == "Lug"){var month = "07"};
+  if (document.getElementById('month-name').innerText == "Ago"){var month = "08"};
+  if (document.getElementById('month-name').innerText == "Set"){var month = "09"};
+  if (document.getElementById('month-name').innerText == "Ott"){var month = "10"};
+  if (document.getElementById('month-name').innerText == "Nov"){var month = "11"};
+  if (document.getElementById('month-name').innerText == "Dic"){var month = "12"};
 
   var origin = document.getElementById('origin').value;
   var destination = document.getElementById('destination').value;
@@ -256,9 +256,6 @@ function postdata() {
       for (i = 0; i < prices.length; i++) {
         if (prices[i].textContent == `${green_prices}€`){
             prices[i].style.color = '#0aac0a';
-            prices[i].style.animation = 'move 4s infinite';
-            prices[i].style.position = 'relative';
-            prices[i].style.animationDirection = 'alternate'
         }
         if(prices[i].textContent == `999€`){
           prices[i].innerHTML = '/';
@@ -341,24 +338,28 @@ cale.addEventListener('click', function(){
   var n_adu = document.getElementById('n_adult_passeng').innerText;
   var n_baby = document.getElementById('n_baby_passeng').innerText;
   var year = document.getElementById('year-name').innerText;
-  if (document.getElementById('month-name').innerText == "gen"){var month = "01"};
-  if (document.getElementById('month-name').innerText == "feb"){var month = "02"};
-  if (document.getElementById('month-name').innerText == "mar"){var month = "03"};
-  if (document.getElementById('month-name').innerText == "apr"){var month = "04"};
-  if (document.getElementById('month-name').innerText == "mag"){var month = "05"};
-  if (document.getElementById('month-name').innerText == "giu"){var month = "06"};
-  if (document.getElementById('month-name').innerText == "lug"){var month = "07"};
-  if (document.getElementById('month-name').innerText == "ago"){var month = "08"};
-  if (document.getElementById('month-name').innerText == "set"){var month = "09"};
-  if (document.getElementById('month-name').innerText == "ott"){var month = "10"};
-  if (document.getElementById('month-name').innerText == "nov"){var month = "11"};
-  if (document.getElementById('month-name').innerText == "dic"){var month = "12"};
+  if (document.getElementById('month-name').innerText == "Gen"){var month = "01"};
+  if (document.getElementById('month-name').innerText == "Feb"){var month = "02"};
+  if (document.getElementById('month-name').innerText == "Mar"){var month = "03"};
+  if (document.getElementById('month-name').innerText == "Apr"){var month = "04"};
+  if (document.getElementById('month-name').innerText == "Mag"){var month = "05"};
+  if (document.getElementById('month-name').innerText == "Giu"){var month = "06"};
+  if (document.getElementById('month-name').innerText == "Lug"){var month = "07"};
+  if (document.getElementById('month-name').innerText == "Ago"){var month = "08"};
+  if (document.getElementById('month-name').innerText == "Set"){var month = "09"};
+  if (document.getElementById('month-name').innerText == "Ott"){var month = "10"};
+  if (document.getElementById('month-name').innerText == "Nov"){var month = "11"};
+  if (document.getElementById('month-name').innerText == "Dic"){var month = "12"};
 
   var xhttp = new XMLHttpRequest;
   xhttp.onload = function(){
 
     $(".r").remove();
     var a = JSON.parse(xhttp.response);
+    var date_selected = moment(a[1][1].arrivaltime).format("DD/MM/YYYY");
+    var date_html =  `<div class="r"><div class="row" style="justify-content: center;"><div class="col-auto">
+                         <p style="font-size: 20px; font-weight: 400;">Treni del ${date_selected}</p></div></div></div>`
+    $('#resu').append(date_html)
     for (var i = 0; i < a.length; i++){
       for( var n = 0; n < a[i].length; n++){
         if (a[i][n].saleable == true && parseInt(moment(a[i][n].departuretime).format("D")) == parseInt(day)){
@@ -372,7 +373,7 @@ cale.addEventListener('click', function(){
           </div></div>`
           $('#resu').append(html)
         }
-        
+
       }
     }
   }
