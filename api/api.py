@@ -10,11 +10,11 @@ from service.train_service import availabl_trains
 from utils import utils
 
 app = FastAPI()
-templates = Jinja2Templates(directory="src/html/")
-app.mount("/html", StaticFiles(directory="src/html"), name="html")
-app.mount("/img", StaticFiles(directory="src/img"), name="img")
-app.mount("/js", StaticFiles(directory="src/js"), name="js")
-app.mount("/css", StaticFiles(directory="src/css"), name="css")
+templates = Jinja2Templates(directory="resources/html/")
+app.mount("/html", StaticFiles(directory="resources/html"), name="html")
+app.mount("/img", StaticFiles(directory="resources/img"), name="img")
+app.mount("/js", StaticFiles(directory="resources/js"), name="js")
+app.mount("/css", StaticFiles(directory="resources/css"), name="css")
 
 
 @app.get("/", response_class=HTMLResponse)
