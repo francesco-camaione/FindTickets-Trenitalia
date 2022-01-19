@@ -4,10 +4,11 @@ body{
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;  
     zoom: 110%;
-    background-color: #f0f2f5;
+    background-color: #ff4d4d;
 }
 #container{
     overflow-x: hidden;
+    background-color: #f0f2f5;
 }
 #title{
   font-size: 72px;

@@ -3,9 +3,8 @@ from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
-from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
-from script.script import calendar_bestprices
+from main.main import calendar_bestprices
 from service import trains_of_day_x
 from service.train_service import availabl_trains
 from utils import utils
@@ -23,15 +22,16 @@ def home(request: Request):
     return templates.TemplateResponse('index.html', context={'request': request})
 
 
-@app.post("/")
+@app.get("/get-calendar")
 def prices(origin: str, destination: str, month: int, year: int, n_adult: int, n_baby: int, atime):
     date = f"01/{month}/{year}"
-    calend_prices = calendar_bestprices(availabl_trains(origin.strip(), destination.strip(), date, n_adult, n_baby, atime))
+    response = availabl_trains(origin.strip(), destination.strip(), date, n_adult, n_baby, atime)
+    calend_prices = calendar_bestprices(response)
     json = jsonable_encoder(calend_prices)
     return JSONResponse(content=json)
 
 
-@app.post("/trains")
+@app.get("/trains")
 def trains(origin, destination, day, month, year, n_adult, n_baby):
     trains_per_day = trains_of_day_x.Tr_Dayx(origin, destination, day, month, year, n_adult, n_baby).get_data()
     return trains_per_day

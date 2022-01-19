@@ -14,7 +14,7 @@ class Tr_Dayx:
         self.date = f"{day}/{month}/{year}"
 
     def get_data(self):
-        hhs = ["06", "07", "08", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+        hhs = ["07", "11", "15", "18"]
         list_of_urls = []
         for hh in hhs:
             url = f"https://www.lefrecce.it/msite/api/solutions?origin={self.origin}&destination={self.destination}" \

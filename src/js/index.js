@@ -262,7 +262,7 @@ function postdata() {
         }
       }
   }
-  xhttp.open("POST", "/?origin="+origin+"&destination="+destination+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime, true);
+  xhttp.open("GET", "/get-calendar?origin="+origin+"&destination="+destination+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime, true);
   xhttp.send();
 }
 
@@ -377,6 +377,6 @@ cale.addEventListener('click', function(){
       }
     }
   }
-  xhttp.open("POST", "/trains/?origin="+origin+"&destination="+destination+"&day="+day+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby, true);
+  xhttp.open("GET", "/trains/?origin="+origin+"&destination="+destination+"&day="+day+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby, true);
   xhttp.send();
   })
