@@ -2,12 +2,12 @@ from utils import utils
 import grequests
 
 
-def availabl_trains(origin, destination, data, n_adult, n_baby, atime):
+def availabl_trains(origin, destination, data, n_adult, n_baby, atime, frecce):
     dates = utils.date_range(data)  # process month dates
     list_of_urls = []
     for date in dates:
         urls = f"https://www.lefrecce.it/msite/api/solutions?origin={origin}&destination={destination}&arflag=A&" \
-               f"adate={date}&atime={atime}&adultno={n_adult}&childno={n_baby}&direction=A&frecce=false" \
+               f"adate={date}&atime={atime}&adultno={n_adult}&childno={n_baby}&direction=A&frecce={frecce}" \
                f"&onlyRegional=false"
         list_of_urls.append(urls)
 

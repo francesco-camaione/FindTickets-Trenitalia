@@ -203,9 +203,14 @@ function postdata() {
   var n_adu = document.getElementById('n_adult_passeng').innerText;
   var n_baby = document.getElementById('n_baby_passeng').innerText;
   var year = document.getElementById('year-name').innerText;
-  var atime = document.getElementById('pick_time').value
+  var atime = document.getElementById('pick_time').value;
+  var frecce = document.getElementById('frecce').value
   var col = document.getElementsByClassName("col");
-
+  if (frecce == 'si'){
+    var frecce_bool = 'true'
+  }else{
+    frecce_bool = 'false'
+    }
   let xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
       var json_resp = JSON.parse(xhttp.responseText);
@@ -262,9 +267,19 @@ function postdata() {
         }
       }
   }
-  xhttp.open("GET", "/get-calendar?origin="+origin+"&destination="+destination+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime, true);
-  xhttp.send();
-}
+  if (origin.length > 1 && destination.length > 1){
+    xhttp.open("GET", "/get-calendar?origin="+origin+"&destination="+destination+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime+"&frecce="+frecce_bool, true);
+    xhttp.send();
+  } else {
+    window.scrollTo({top: document.getElementById('destination')});
+    if (origin.length < 1){
+        document.getElementById('origin').style.animation = 'shake .20s 3'
+        }
+    if (destination.length < 1){
+        document.getElementById('destination').style.animation = 'shake .20s 3'
+        }
+    }
+  }
 
 
 function from_stazioni(){
@@ -309,25 +324,6 @@ function to_stazioni(){
   }
 }
 
-var time_picker = document.getElementById('pick_time');
-var clock = document.getElementById('clock');
-clock.onclick = function(){
-    if (time_picker.style.display == 'none'){
-        time_picker.style.display = 'inline-flex';
-        }
-    }
-
-function bigImg() {
-  document.getElementById('clock').style.height = "30px";
-  document.getElementById('clock').style.width = "30px";
-}
-
-function normalImg() {
-  document.getElementById('clock').style.height = "28px";
-  document.getElementById('clock').style.width = "28px";
-}
-
-
 var cale = document.getElementById('tableBody')
 cale.addEventListener('click', function(){
   var day_sel = document.getElementsByClassName('activeDay')
@@ -337,6 +333,8 @@ cale.addEventListener('click', function(){
   var destination = document.getElementById('destination').value;
   var n_adu = document.getElementById('n_adult_passeng').innerText;
   var n_baby = document.getElementById('n_baby_passeng').innerText;
+  var atime = document.getElementById('pick_time').value;
+  var frecce = document.getElementById('frecce').value;
   var year = document.getElementById('year-name').innerText;
   if (document.getElementById('month-name').innerText == "Gen"){var month = "01"};
   if (document.getElementById('month-name').innerText == "Feb"){var month = "02"};
@@ -350,7 +348,11 @@ cale.addEventListener('click', function(){
   if (document.getElementById('month-name').innerText == "Ott"){var month = "10"};
   if (document.getElementById('month-name').innerText == "Nov"){var month = "11"};
   if (document.getElementById('month-name').innerText == "Dic"){var month = "12"};
-
+  if (frecce == 'si'){
+    var frecce_bool = 'true'
+  }else{
+    frecce_bool = 'false'
+    }
   var xhttp = new XMLHttpRequest;
   xhttp.onload = function(){
 
@@ -377,6 +379,16 @@ cale.addEventListener('click', function(){
       }
     }
   }
-  xhttp.open("GET", "/trains/?origin="+origin+"&destination="+destination+"&day="+day+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby, true);
-  xhttp.send();
+  if (origin.length > 1 && destination.length > 1){
+    xhttp.open("GET", "/trains/?origin="+origin+"&destination="+destination+"&day="+day+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime+"&frecce="+frecce_bool, true);
+    xhttp.send();
+  } else {
+    window.scrollTo({top: document.getElementById('destination')});
+    if (origin.length < 1){
+        document.getElementById('origin').style.animation = 'shake .20s 3'
+        }
+    if (destination.length < 1){
+        document.getElementById('destination').style.animation = 'shake .20s 3'
+        }
+    }
   })

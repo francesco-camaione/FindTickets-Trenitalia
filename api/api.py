@@ -23,17 +23,17 @@ def home(request: Request):
 
 
 @app.get("/get-calendar")
-def prices(origin: str, destination: str, month: int, year: int, n_adult: int, n_baby: int, atime):
+def prices(origin: str, destination: str, month: int, year: int, n_adult: int, n_baby: int, atime, frecce: str):
     date = f"01/{month}/{year}"
-    response = availabl_trains(origin.strip(), destination.strip(), date, n_adult, n_baby, atime)
+    response = availabl_trains(origin.strip(), destination.strip(), date, n_adult, n_baby, atime, frecce)
     calend_prices = calendar_bestprices(response)
     json = jsonable_encoder(calend_prices)
     return JSONResponse(content=json)
 
 
 @app.get("/trains")
-def trains(origin, destination, day, month, year, n_adult, n_baby):
-    trains_per_day = trains_of_day_x.Tr_Dayx(origin, destination, day, month, year, n_adult, n_baby).get_data()
+def trains(origin, destination, day, month, year, n_adult, n_baby, atime, frecce):
+    trains_per_day = trains_of_day_x.Tr_Dayx(origin, destination, day, month, year, n_adult, n_baby, atime, frecce).get_data()
     return trains_per_day
 
 

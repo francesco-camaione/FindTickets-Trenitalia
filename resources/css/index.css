@@ -59,6 +59,14 @@ form{
 #destination::placeholder{
   color: #5f6666;
 }
+.dropdwn-list{
+    background: none;
+    border-radius: 10px;
+    border-color: #9335ff;
+}
+.dropup .dropdown-toggle::after{
+    display: none;
+}
 #results {
     justify-content: center;
     text-align: center;
@@ -254,4 +262,15 @@ select:focus, select:focus{
 }
 #res{
   justify-content: center;
+}
+@keyframes shake{
+    0%{
+        transform: translateX(0);
+    }
+    40%{
+        transform: translateX(10px);
+    }
+    100%{
+        transform: translateX(-10px);
+    }
 }
