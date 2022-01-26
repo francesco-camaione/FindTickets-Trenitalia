@@ -1,190 +1,6 @@
-var calendar = document.getElementById("tableContainer");
-var gridTable = document.getElementById("tableBody");
-var currentDate = new Date();
-var selectedDate = currentDate;
-var selectedDayBlock = null;
-
-function createCalendar(date, side) {
-  var currentDate = date;
-  var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-
-  var yearTitle = document.getElementById("year-name");
-  var monthTitle = document.getElementById("month-name");
-
-  var monthName = currentDate.toLocaleString("ita-IT", {
-    month: "short"
-  });
-  var yearNum = currentDate.toLocaleString("ita-IT", {
-    year: "numeric"
-  });
-  yearTitle.innerHTML = `${yearNum}`;
-  monthTitle.innerHTML = `${monthName[0].toUpperCase()+monthName.substring(1)}`;
-
-  if (side == "left") {
-    gridTable.className = "animated fadeOutRight";
-  } else {
-    gridTable.className = "animated fadeOutLeft";
-  }
-
-  gridTable.innerHTML = "";
-
-  var newTr = document.createElement("div");
-  newTr.className = "row";
-  var currentTr = gridTable.appendChild(newTr);
-
-  for (let i = 1; i < startDate.getDay(); i++) {
-    let emptyDivCol = document.createElement("div");
-    emptyDivCol.className = "col empty-day";
-    currentTr.appendChild(emptyDivCol);
-  }
-
-  var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-  lastDay = lastDay.getDate();
-
-  for (let i = 1; i <= lastDay; i++) {
-    if (currentTr.getElementsByTagName("div").length >= 7) {
-      currentTr = gridTable.appendChild(addNewRow());
-    }
-    let currentDay = document.createElement("div");
-    currentDay.className = "col"; // div giorno della settimana
-    if (selectedDayBlock == null && i == currentDate.getDate() || selectedDate.toDateString() == new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString()) {
-      selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
-
-      document.getElementById("selectedDay").innerHTML = selectedDate.toLocaleString("it", {
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-      });
-
-      selectedDayBlock = currentDay;
-      setTimeout(() => {
-        currentDay.classList.add("activeDay");
-        currentDay.classList.add("dayHover");
-      }, 900);
-    }
-    currentDay.innerHTML = i;
-    currentTr.appendChild(currentDay);
-  }
-
-  for (let i = currentTr.getElementsByTagName("div").length; i < 7; i++) {
-    let emptyDivCol = document.createElement("div");
-    emptyDivCol.className = "col empty-day";
-    currentTr.appendChild(emptyDivCol);
-  }
-
-  setTimeout(() => {
-    if (side == "left") {
-      gridTable.className = "animated fadeInLeft";
-    } else if (side == "right") {
-      gridTable.className = "animated fadeInRight";
-    } else {
-      gridTable.className = "animated fadeIn";
-    }
-  }, 270);
-
-  function addNewRow() {
-    let node = document.createElement("div");
-    node.className = "row";
-    return node;
-  }
-}
-
-createCalendar(currentDate);
-
-var prevMonthButton = document.getElementById("prevMonth");
-var nextMonthButton = document.getElementById("nextMonth");
-
-var prevYearButton = document.getElementById("prevYear");
-var nextYearButton = document.getElementById("nextYear");
-
-prevMonthButton.onclick = changeMonthPrev;
-nextMonthButton.onclick = changeMonthNext;
-
-prevYearButton.onclick = changeYearPrev;
-nextYearButton.onclick = changeYearNext;
-
-function changeMonthPrev() {
-    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
-    createCalendar(currentDate, "left");
-}
-
-function changeMonthNext() {
-    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
-    createCalendar(currentDate, "right");
-}
-
-function changeYearPrev() {
-    var year_selected = document.getElementById('year-name').innerText;
-    var currentYear  = new Date().getFullYear();
-    if (parseInt(year_selected) > currentYear){
-        currentDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth());
-        createCalendar(currentDate, "down");
-    }
-}
-
-function changeYearNext() {
-    var year_selected = document.getElementById('year-name').innerText;
-    var currentYear  = new Date().getFullYear();
-    if (year_selected == currentYear){
-        currentDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth());
-        createCalendar(currentDate, "up");
-        }
-}
-
-gridTable.onclick = function (e) {
-
-  if (!e.target.classList.contains("col") || e.target.classList.contains("empty-day")) {
-        return;
-  }
-
-  if (selectedDayBlock) {
-    if (selectedDayBlock.classList.contains("activeDay") && selectedDayBlock.classList.contains("dayHover")) {
-      selectedDayBlock.classList.remove("activeDay");
-      selectedDayBlock.classList.remove("dayHover");
-    }
-  }
-  selectedDayBlock = e.target;
-  selectedDayBlock.classList.add("activeDay");
-  selectedDayBlock.classList.add("dayHover");
-
-  selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
-}
-
-function countUp(){
-  var a = document.getElementById("n_adult_passeng").innerHTML
-  if (a < 7){
-    a = parseInt(a) +1
-    document.getElementById("n_adult_passeng").innerHTML = a
-    }
-}
-
-function countUp2(){
-  var a = document.getElementById("n_baby_passeng").innerHTML
-  if (a < 6){
-    a = parseInt(a) +1
-    document.getElementById("n_baby_passeng").innerHTML = a
-    }
-}
-
-function countDown(){
-  var a = document.getElementById("n_adult_passeng").innerHTML;
-  if (parseInt(a) > 1 ){
-    a = parseInt(a) -1;
-    document.getElementById("n_adult_passeng").innerHTML = a;
-  }
-}
-
-function countDown2(){
-  var a = document.getElementById("n_baby_passeng").innerHTML;
-  if (parseInt(a) > 0 ){
-    a = parseInt(a) -1;
-    document.getElementById("n_baby_passeng").innerHTML = a;
-  }
-}
-
-
 function postdata() {
   $(".price").remove();
+
   if (document.getElementById('month-name').innerText == "Gen"){var month = "01"};
   if (document.getElementById('month-name').innerText == "Feb"){var month = "02"};
   if (document.getElementById('month-name').innerText == "Mar"){var month = "03"};
@@ -206,15 +22,16 @@ function postdata() {
   var atime = document.getElementById('pick_time').value;
   var frecce = document.getElementById('frecce').value
   var col = document.getElementsByClassName("col");
+
   if (frecce == 'si'){
     var frecce_bool = 'true'
   }else{
     frecce_bool = 'false'
     }
+
   let xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
       var json_resp = JSON.parse(xhttp.responseText);
-
       var items = Object.keys(json_resp).map(function(key) {
               return [key, json_resp[key]];
               });
@@ -222,8 +39,8 @@ function postdata() {
           return second[1] - first[1];
             });
       var green_prices = parseInt(items.pop()[1]);
-      for (var i = 0; i < col.length; i++){
 
+      for (var i = 0; i < col.length; i++){
           if (col[i].textContent == 1){$(col[i]).append(`<div class="price">${json_resp["01"]}€</div>`)};
           if (col[i].textContent == 2){$(col[i]).append(`<div class="price">${json_resp["02"]}€</div>`)};
           if (col[i].textContent == 3){$(col[i]).append(`<div class="price">${json_resp["03"]}€</div>`)};
@@ -255,9 +72,10 @@ function postdata() {
           if (col[i].textContent == 29){$(col[i]).append(`<div class="price">${json_resp["29"]}€</div>`)};
           if (col[i].textContent == 30){$(col[i]).append(`<div class="price">${json_resp["30"]}€</div>`)};
           if (col[i].textContent == 31){$(col[i]).append(`<div class="price">${json_resp["31"]}€</div>`)};
-
       }
+
       var prices = document.getElementsByClassName('price');
+
       for (i = 0; i < prices.length; i++) {
         if (prices[i].textContent == `${green_prices}€`){
             prices[i].style.color = '#0aac0a';
@@ -267,11 +85,13 @@ function postdata() {
         }
       }
   }
+
   if (origin.length > 1 && destination.length > 1){
     xhttp.open("GET", "/get-calendar?origin="+origin+"&destination="+destination+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime+"&frecce="+frecce_bool, true);
     xhttp.send();
   } else {
     window.scrollTo({top: document.getElementById('destination')});
+
     if (origin.length < 1){
         document.getElementById('origin').style.animation = 'shake .20s 3'
         }
@@ -285,13 +105,16 @@ function postdata() {
 function from_stazioni(){
   $("#da_stazioni").remove();
   var letters = document.getElementById('origin').value;
+
   let xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
      var html = "";
      var j = JSON.parse(xhttp.response);
+
      for(let n = 0; n < j.length; n++){
          html += `<option value="${j[n].name}">`;
      }
+
     var dtlst = document.createElement('datalist');
     dtlst.id = "da_stazioni";
     document.getElementById('origin').append(dtlst);
@@ -335,6 +158,7 @@ cale.addEventListener('click', function(){
   var atime = document.getElementById('pick_time').value;
   var frecce = document.getElementById('frecce').value;
   var year = document.getElementById('year-name').innerText;
+
   if (document.getElementById('month-name').innerText == "Gen"){var month = "01"};
   if (document.getElementById('month-name').innerText == "Feb"){var month = "02"};
   if (document.getElementById('month-name').innerText == "Mar"){var month = "03"};
@@ -347,18 +171,20 @@ cale.addEventListener('click', function(){
   if (document.getElementById('month-name').innerText == "Ott"){var month = "10"};
   if (document.getElementById('month-name').innerText == "Nov"){var month = "11"};
   if (document.getElementById('month-name').innerText == "Dic"){var month = "12"};
+
   if (frecce == 'si'){
     var frecce_bool = 'true'
   }else{
     frecce_bool = 'false'
     }
+
   var xhttp = new XMLHttpRequest;
   xhttp.onload = function(){
-
     $(".r").remove();
     var resp = JSON.parse(xhttp.response);
     var date_html =  `<div class="r"><div class="row" style="justify-content: center;"><div class="col-auto">
                          <p style="font-size: 20px; font-weight: 400;">Treni del ${day}/${month}/${year}</p></div></div></div>`
+
     $('#resu').append(date_html)
     for (var i = 0; i < resp.length; i++){
       for( var n = 0; n < resp[i].length; n++){
@@ -373,15 +199,21 @@ cale.addEventListener('click', function(){
           </div></div>`
           $('#resu').append(html)
         }
-
       }
     }
+    if (document.getElementsByClassName('r').length < 2){
+        message = `<div class="r"><div class="row">
+        <p style="text-align: center;">Oops...pare che non ci siano treni, prova a cambiare l'orario di partenza o data.</p></div></div>`
+        $('#resu').append(message)
+        }
   }
+
   if (origin.length > 1 && destination.length > 1){
     xhttp.open("GET", "/trains/?origin="+origin+"&destination="+destination+"&day="+day+"&month="+month+"&year="+year+"&n_adult="+n_adu+"&n_baby="+n_baby+"&atime="+atime+"&frecce="+frecce_bool, true);
     xhttp.send();
   } else {
     window.scrollTo({top: document.getElementById('destination')});
+
     if (origin.length < 1){
         document.getElementById('origin').style.animation = 'shake .25s 3'
         }
