@@ -327,8 +327,7 @@ function to_stazioni(){
 var cale = document.getElementById('tableBody')
 cale.addEventListener('click', function(){
   var day_sel = document.getElementsByClassName('activeDay')
-  var day = day_sel[0].innerText[0]+ day_sel[0].innerText[1]
-
+  var day = parseInt(day_sel[0].innerText[0]+ day_sel[0].innerText[1])
   var origin = document.getElementById('origin').value;
   var destination = document.getElementById('destination').value;
   var n_adu = document.getElementById('n_adult_passeng').innerText;
@@ -357,20 +356,19 @@ cale.addEventListener('click', function(){
   xhttp.onload = function(){
 
     $(".r").remove();
-    var a = JSON.parse(xhttp.response);
-    var date_selected = moment(a[1][1].arrivaltime).format("DD/MM/YYYY");
+    var resp = JSON.parse(xhttp.response);
     var date_html =  `<div class="r"><div class="row" style="justify-content: center;"><div class="col-auto">
-                         <p style="font-size: 20px; font-weight: 400;">Treni del ${date_selected}</p></div></div></div>`
+                         <p style="font-size: 20px; font-weight: 400;">Treni del ${day}/${month}/${year}</p></div></div></div>`
     $('#resu').append(date_html)
-    for (var i = 0; i < a.length; i++){
-      for( var n = 0; n < a[i].length; n++){
-        if (a[i][n].saleable == true && parseInt(moment(a[i][n].departuretime).format("D")) == parseInt(day)){
+    for (var i = 0; i < resp.length; i++){
+      for( var n = 0; n < resp[i].length; n++){
+        if (resp[i][n].saleable == true && parseInt(moment(resp[i][n].departuretime).format("D")) == parseInt(day)){
           var html = `<div class="r"><div class="row">
           <div class="container" style="display: flex; gap: 0.6rem; background: white; border-radius: 10px; border: 1.5px solid blueviolet; width: 100%; flex-wrap: wrap; margin-bottom: 10px; justify-content: space-between; align-items: baseline;">
-          <div class="item" style="text-align: center; padding-top: 10px; max-width: 72px; min-width: 72px;"><p style="font-weight: 500;">${moment(a[i][n].departuretime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${a[i][n].origin}</p></div>
-          <div class="item" style="color: gray; font-size: 11px; margin-top: 14px; min-width: 35px; ">${a[i][n].duration}h</div>
-          <div class="item" style="text-align: center; padding-top: 10px; max-width: 72px; min-width: 72px;"><p style="font-weight: 500">${moment(a[i][n].arrivaltime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${a[i][n].destination}</p></div>
-          <div class="item" style="display: contents"><p style="font-size: 10px; color: #494343; margin-left: 8%;">Cambi: ${a[i][n].changesno}</p><p style="font-size: 10px; color: #494343; padding-left: 10px;">${a[i][n].trainlist[0].trainacronym}</p><p style="margin-left: auto; padding-right: 10px; font-weight: 600; ">${a[i][n].originalPrice}€</p></div>
+          <div class="item" style="text-align: center; padding-top: 10px; max-width: 72px; min-width: 72px;"><p style="font-weight: 500;">${moment(resp[i][n].departuretime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${resp[i][n].origin}</p></div>
+          <div class="item" style="color: gray; font-size: 11px; margin-top: 14px; min-width: 35px; ">${resp[i][n].duration}h</div>
+          <div class="item" style="text-align: center; padding-top: 10px; max-width: 72px; min-width: 72px;"><p style="font-weight: 500">${moment(resp[i][n].arrivaltime).format("H:mm")}</p><p style="font-size: 12.5px; color: grey; ">${resp[i][n].destination}</p></div>
+          <div class="item" style="display: contents"><p style="font-size: 10px; color: #494343; margin-left: 8%;">Cambi: ${resp[i][n].changesno}</p><p style="font-size: 10px; color: #494343; padding-left: 10px;">${resp[i][n].trainlist[0].trainacronym}</p><p style="margin-left: auto; padding-right: 10px; font-weight: 600; ">${resp[i][n].originalPrice}€</p></div>
           </div>
           </div></div>`
           $('#resu').append(html)
@@ -385,10 +383,10 @@ cale.addEventListener('click', function(){
   } else {
     window.scrollTo({top: document.getElementById('destination')});
     if (origin.length < 1){
-        document.getElementById('origin').style.animation = 'shake .20s 3'
+        document.getElementById('origin').style.animation = 'shake .25s 3'
         }
     if (destination.length < 1){
-        document.getElementById('destination').style.animation = 'shake .20s 3'
+        document.getElementById('destination').style.animation = 'shake .25s 3'
         }
     }
   })

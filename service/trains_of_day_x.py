@@ -21,7 +21,7 @@ class Tr_Dayx:
         for hh in hhs:
             url = f"https://www.lefrecce.it/msite/api/solutions?origin={self.origin}&destination={self.destination}" \
                   f"&arflag=A&adate={self.date}&atime={hh}&adultno={self.n_adult}" \
-                  f"&childno={self.n_baby}&direction=A&frecce={self.frecce}"
+                  f"&childno={self.n_baby}&direction=A&frecce={self.frecce}&onlyRegional=false"
             list_of_urls.append(url)
 
         set_of_requests = (grequests.get(url) for url in list_of_urls)
