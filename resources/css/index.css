@@ -23,6 +23,7 @@ body{
     justify-content: center;
     font-size: 1em;
     font-family: 'Poppins', sans-serif;
+    animation: 650ms ease-out 0s 1 slideInFromBottom;
 }
 #row2{
     margin: auto;
@@ -273,4 +274,12 @@ select:focus, select:focus{
     100%{
         transform: translateX(-10px);
     }
+}
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(33%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
