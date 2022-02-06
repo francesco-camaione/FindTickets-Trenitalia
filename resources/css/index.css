@@ -5,8 +5,9 @@ body{
     font-family: 'Poppins', sans-serif;  
     zoom: 110%;
     background-image: -webkit-gradient(linear, 90deg, #ff4d4d 50%, #9335ff 50%);
-    background-image: -webkit-linear-gradient(90deg, #ff4d4d 50%, #9335ff 50%);
+    background-image: -webkit-linear-gradient(270deg, #ff4d4d 50%, #9335ff 50%);
     background-image: -moz-linear-gradient(90deg, #ff4d4d 50%, #9335ff 50%);
+    background-attachment: fixed;
 }
 #container{
     overflow-x: hidden;
