@@ -4,7 +4,8 @@ body{
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;  
     zoom: 110%;
-    background-color: #ff4d4d;
+    background: linear-gradient(180deg, #ff4d4d 50%, #9335ff 50%);
+    background-attachment: fixed;
 }
 #container{
     overflow-x: hidden;
@@ -176,7 +177,7 @@ form{
     display: inline-flex;
     width: 210px;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 .arrowContainer a {
     display: inline-flex;
