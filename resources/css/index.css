@@ -63,6 +63,9 @@ form{
 #destination::placeholder{
   color: #5f6666;
 }
+#filter:hover{
+    transform: scale(1.16)
+}
 .dropdwn-list{
     background: none;
     border-radius: 10px;
