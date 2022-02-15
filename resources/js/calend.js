@@ -181,3 +181,14 @@ function countDown2(){
     document.getElementById("n_baby_passeng").innerHTML = a;
   }
 }
+
+let n = 0;
+function swapStations(){
+  var from_stat = document.getElementById("origin").value;
+  var to_stat = document.getElementById("destination").value;
+  n += 180;
+  document.getElementById("swap_img").style.transform = `rotate(${n}deg)`;
+  document.getElementById("swap_img").style.transition = "0.3s linear";
+  document.getElementById("origin").value = to_stat;
+  document.getElementById("destination").value = from_stat;
+}

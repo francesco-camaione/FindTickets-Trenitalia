@@ -43,6 +43,10 @@ form{
 #destination{
     caret-color: #9335ff;
 }
+#swap{
+    background-color: transparent;
+    border: none;
+}
 #n_adult_passeng{
   margin-left: 5px;
   margin-top: 16px;
