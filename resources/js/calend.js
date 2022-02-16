@@ -188,7 +188,7 @@ function swapStations(){
   var to_stat = document.getElementById("destination").value;
   n += 180;
   document.getElementById("swap_img").style.transform = `rotate(${n}deg)`;
-  document.getElementById("swap_img").style.transition = "0.3s linear";
+  document.getElementById("swap_img").style.transition = "0.18s linear";
   document.getElementById("origin").value = to_stat;
   document.getElementById("destination").value = from_stat;
 }

@@ -47,6 +47,9 @@ form{
     background-color: transparent;
     border: none;
 }
+#swap_img:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.3);
+}
 #n_adult_passeng{
   margin-left: 5px;
   margin-top: 16px;
@@ -67,8 +70,8 @@ form{
 #destination::placeholder{
   color: #5f6666;
 }
-#filter:hover{
-    transform: scale(1.16)
+#filter_img:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.3);
 }
 .dropdwn-list{
     background: none;
@@ -268,8 +271,13 @@ select:focus, select:focus{
 .atime{
     border-radius: 20px
 }
+#search_btn:hover{
+    transition: all 0.32s ease 0s;
+    transform: translateY(-3px);
+}
 .col:hover{
-    transform: scale(1.1)
+    transition: all 0.32s ease 0s;
+    transform: translateY(-3px);
 }
 #res{
   justify-content: center;
