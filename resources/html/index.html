@@ -47,12 +47,12 @@
                     <div class="row" id="row2">
                         <div class="col-sm-auto">
                             <div class="col-sm-auto">
-                                <input list="da_stazioni" id="origin" oninput="from_stazioni()" placeholder="Da" value="MILANO CENTRALE" type="text" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; text-align: center;"/>
+                                <input list="da_stazioni" id="origin" oninput="from_stazioni()" placeholder="Da" value="MILANO CENTRALE" type="text" aria-label="Stazione di partenza" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; text-align: center;"/>
                                 <datalist id="da_stazioni"></datalist>
                             </div>
-                            <a id="swap" onclick="swapStations()"><img id="swap_img" src="{{ url_for('img', path='/swap.png') }}" style="height: 22px; width: 22px; margin: 3px; border-radius: 100%" alt="swap stazioni"></a>
+                            <a id="swap" onclick="swapStations()"><img id="swap_img" src="{{ url_for('img', path='/swap.png') }}" style="height: 22px; width: 22px; margin: 3px; border-radius: 100%; cursor: pointer;" alt="swap stazioni"></a>
                             <div class="col-sm-auto">
-                                <input list="a_stazioni" placeholder="A stazione" id="destination" oninput="to_stazioni()" type="text" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; margin-bottom: 10px; text-align: center;"/>
+                                <input list="a_stazioni" placeholder="A stazione" id="destination" oninput="to_stazioni()" type="text" aria-label="Stazione di arrivo" style="max-width: 170px; border-radius: 4px; border-color: white; border-style: solid; border-width: 0.4px; outline: none; min-height: 30px; margin-bottom: 10px; text-align: center;"/>
                                 <datalist id="a_stazioni"></datalist>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                 <div class="container" style=" margin-bottom: 10px;">
                     <div class="item">
                         <div class="btn-group dropup">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" id="filter" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; border-radius: 11px; box-shadow: none;">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" id="filter" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Seleziona filtri" style="background: none; border: none; border-radius: 11px; box-shadow: none;">
                                 <img src="{{ url_for('img', path='/filter.png') }}" id="filter_img" style="height: 24px; width: 24px; border-radius: 6px; padding: 2px" alt="filtri">
                             </button>
                             <ul class="dropdown-menu" style="border-radius: 11px; padding: 4px">

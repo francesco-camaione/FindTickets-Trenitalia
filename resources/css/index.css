@@ -40,6 +40,9 @@ form{
 #origin{
     caret-color: #9335ff;
 }
+#origin:focus, #destination:focus {
+    border-color: #161a1d !important;
+}
 #destination{
     caret-color: #9335ff;
 }
