@@ -18,7 +18,7 @@ function createCalendar(date, side) {
     year: "numeric"
   });
   yearTitle.innerHTML = `${yearNum}`;
-  monthTitle.innerHTML = `${monthName[0].toUpperCase()+monthName.substring(1)}`;
+  monthTitle.innerHTML = `${monthName[0].toUpperCase() + monthName.substring(1)}`;
 
   if (side == "left") {
     gridTable.className = "animated fadeOutRight";
@@ -104,37 +104,37 @@ prevYearButton.onclick = changeYearPrev;
 nextYearButton.onclick = changeYearNext;
 
 function changeMonthPrev() {
-    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
-    createCalendar(currentDate, "left");
+  currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+  createCalendar(currentDate, "left");
 }
 
 function changeMonthNext() {
-    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
-    createCalendar(currentDate, "right");
+  currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+  createCalendar(currentDate, "right");
 }
 
 function changeYearPrev() {
-    var year_selected = document.getElementById('year-name').innerText;
-    var currentYear  = new Date().getFullYear();
-    if (parseInt(year_selected) > currentYear){
-        currentDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth());
-        createCalendar(currentDate, "down");
-    }
+  var year_selected = document.getElementById('year-name').innerText;
+  var currentYear = new Date().getFullYear();
+  if (parseInt(year_selected) > currentYear) {
+    currentDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth());
+    createCalendar(currentDate, "down");
+  }
 }
 
 function changeYearNext() {
-    var year_selected = document.getElementById('year-name').innerText;
-    var currentYear  = new Date().getFullYear();
-    if (year_selected == currentYear){
-        currentDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth());
-        createCalendar(currentDate, "up");
-        }
+  var year_selected = document.getElementById('year-name').innerText;
+  var currentYear = new Date().getFullYear();
+  if (year_selected == currentYear) {
+    currentDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth());
+    createCalendar(currentDate, "up");
+  }
 }
 
 gridTable.onclick = function (e) {
 
   if (!e.target.classList.contains("col") || e.target.classList.contains("empty-day")) {
-        return;
+    return;
   }
 
   if (selectedDayBlock) {
@@ -150,40 +150,40 @@ gridTable.onclick = function (e) {
   selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
 }
 
-function countUp(){
+function countUp() {
   var a = document.getElementById("n_adult_passeng").innerHTML
-  if (a < 7){
-    a = parseInt(a) +1
+  if (a < 7) {
+    a = parseInt(a) + 1
     document.getElementById("n_adult_passeng").innerHTML = a
-    }
+  }
 }
 
-function countUp2(){
+function countUp2() {
   var a = document.getElementById("n_baby_passeng").innerHTML
-  if (a < 6){
-    a = parseInt(a) +1
+  if (a < 6) {
+    a = parseInt(a) + 1
     document.getElementById("n_baby_passeng").innerHTML = a
-    }
+  }
 }
 
-function countDown(){
+function countDown() {
   var a = document.getElementById("n_adult_passeng").innerHTML;
-  if (parseInt(a) > 1 ){
-    a = parseInt(a) -1;
+  if (parseInt(a) > 1) {
+    a = parseInt(a) - 1;
     document.getElementById("n_adult_passeng").innerHTML = a;
   }
 }
 
-function countDown2(){
+function countDown2() {
   var a = document.getElementById("n_baby_passeng").innerHTML;
-  if (parseInt(a) > 0 ){
-    a = parseInt(a) -1;
+  if (parseInt(a) > 0) {
+    a = parseInt(a) - 1;
     document.getElementById("n_baby_passeng").innerHTML = a;
   }
 }
 
 let n = 0;
-function swapStations(){
+function swapStations() {
   var from_stat = document.getElementById("origin").value;
   var to_stat = document.getElementById("destination").value;
   n += 180;
