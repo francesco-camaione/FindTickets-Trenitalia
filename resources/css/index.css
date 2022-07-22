@@ -15,6 +15,16 @@ body {
   background-color: #f0f2f5;
 }
 
+.bad-message {
+    text-align: center;
+    margin: 15px;
+}
+
+.bad-message p strong {
+    border-bottom: 1px solid;
+    font-weight: 600;
+}
+
 #title {
   font-size: 72px;
   background: -webkit-linear-gradient(#9335ff, #ff4d4d);

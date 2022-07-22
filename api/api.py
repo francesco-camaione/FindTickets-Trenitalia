@@ -39,7 +39,7 @@ def trains(origin, destination, day, month, year, n_adult, n_baby, atime, frecce
     return trains_per_day
 
 
-@app.post("/stations")
+@app.get("/stations")
 def stations(letter: str):
     res = utils.stations(letter)
     return res
